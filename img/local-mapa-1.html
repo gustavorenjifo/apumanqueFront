@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/> 
+    <!-- favicon -->
+    <link type="image/x-icon" rel="shortcut icon" href="favicon.ico" />   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" rel="stylesheet">
+    <!-- estilos -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/hammer.min.js"></script>
+    <script>
+          var MIN_SCALE = 1; // 1=scaling when first loaded
+          var MAX_SCALE = 64;
+          // HammerJS fires "pinch" and "pan" events that are cumulative in nature and not
+          // deltas. Therefore, we need to store the "last" values of scale, x and y so that we can
+          // adjust the UI accordingly. It isn't until the "pinchend" and "panend" events are received
+          // that we can set the "last" values.
+          // Our "raw" coordinates are not scaled. This allows us to only have to modify our stored
+          // coordinates when the UI is updated. It also simplifies our calculations as these
+          // coordinates are without respect to the current scale.
+          var imgWidth = null;
+          var imgHeight = null;
+          var viewportWidth = null;
+          var viewportHeight = null;
+          var scale = null;
+          var lastScale = null;
+          var container = null;
+          var img = null;
+          var x = 0;
+          var lastX = 0;
+          var y = 0;
+          var lastY = 0;
+          var pinchCenter = null;
+          // We need to disable the following event handlers so that the browser doesn't try to
+          // automatically handle our image drag gestures.
+          var disableImgEventHandlers = function () {
+            var events = ['onclick', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover',
+                          'onmouseup', 'ondblclick', 'onfocus', 'onblur'];
+            events.forEach(function (event) {
+              img[event] = function () {
+                return false;
+              };
+            });
+          };
+          // Traverse the DOM to calculate the absolute position of an element
+          var absolutePosition = function (el) {
+            var x = 0,
+              y = 0;
+            while (el !== null) {
+              x += el.offsetLeft;
+              y += el.offsetTop;
+              el = el.offsetParent;
+            }
+            return { x: x, y: y };
+          };
+          var restrictScale = function (scale) {
+            if (scale < MIN_SCALE) {
+              scale = MIN_SCALE;
+            } else if (scale > MAX_SCALE) {
+              scale = MAX_SCALE;
+            }
+            return scale;
+          };
+          var restrictRawPos = function (pos, viewportDim, imgDim) {
+            if (pos < viewportDim/scale - imgDim) { // too far left/up?
+              pos = viewportDim/scale - imgDim;
+            } else if (pos > 0) { // too far right/down?
+              pos = 0;
+            }
+            return pos;
+          };
+          var updateLastPos = function (deltaX, deltaY) {
+            lastX = x;
+            lastY = y;
+          };
+          var translate = function (deltaX, deltaY) {
+            // We restrict to the min of the viewport width/height or current width/height as the
+            // current width/height may be smaller than the viewport width/height
+            var newX = restrictRawPos(lastX + deltaX/scale,
+                                      Math.min(viewportWidth, curWidth), imgWidth);
+            x = newX;
+            img.style.marginLeft = Math.ceil(newX*scale) + 'px';
+            var newY = restrictRawPos(lastY + deltaY/scale,
+                                      Math.min(viewportHeight, curHeight), imgHeight);
+            y = newY;
+            img.style.marginTop = Math.ceil(newY*scale) + 'px';
+          };
+          var zoom = function (scaleBy) {
+            scale = restrictScale(lastScale*scaleBy);
+            curWidth = imgWidth*scale;
+            curHeight = imgHeight*scale;
+            img.style.width = Math.ceil(curWidth) + 'px';
+            img.style.height = Math.ceil(curHeight) + 'px';
+            // Adjust margins to make sure that we aren't out of bounds
+            translate(0, 0);
+          };
+          var rawCenter = function (e) {
+            var pos = absolutePosition(container);
+            // We need to account for the scroll position
+            var scrollLeft = window.pageXOffset ? window.pageXOffset : document.body.scrollLeft;
+            var scrollTop = window.pageYOffset ? window.pageYOffset : document.body.scrollTop;
+            var zoomX = -x + (e.center.x - pos.x + scrollLeft)/scale;
+            var zoomY = -y + (e.center.y - pos.y + scrollTop)/scale;
+            return { x: zoomX, y: zoomY };
+          };
+          var updateLastScale = function () {
+            lastScale = scale;
+          };
+          var zoomAround = function (scaleBy, rawZoomX, rawZoomY, doNotUpdateLast) {
+            // Zoom
+            zoom(scaleBy);
+            // New raw center of viewport
+            var rawCenterX = -x + Math.min(viewportWidth, curWidth)/2/scale;
+            var rawCenterY = -y + Math.min(viewportHeight, curHeight)/2/scale;
+            // Delta
+            var deltaX = (rawCenterX - rawZoomX)*scale;
+            var deltaY = (rawCenterY - rawZoomY)*scale;
+            // Translate back to zoom center
+            translate(deltaX, deltaY);
+            if (!doNotUpdateLast) {
+              updateLastScale();
+              updateLastPos();
+            }
+          };
+          var zoomCenter = function (scaleBy) {
+            // Center of viewport
+            var zoomX = -x + Math.min(viewportWidth, curWidth)/2/scale;
+            var zoomY = -y + Math.min(viewportHeight, curHeight)/2/scale;
+            zoomAround(scaleBy, zoomX, zoomY);
+          };
+          var zoomIn = function () {
+            zoomCenter(2);
+          };
+          var zoomOut = function () {
+            zoomCenter(1/2);
+          };
+          var onLoad = function () {
+            img = document.getElementById('pinch-zoom-image-id');
+            container = img.parentElement;
+            disableImgEventHandlers();
+            imgWidth = img.width;
+            imgHeight = img.height;
+            viewportWidth = img.offsetWidth;
+            scale = viewportWidth/imgWidth;
+            lastScale = scale;
+            viewportHeight = img.parentElement.offsetHeight;
+            curWidth = imgWidth*scale;
+            curHeight = imgHeight*scale;
+            var hammer = new Hammer(container, {
+              domEvents: true
+            });
+            hammer.get('pinch').set({
+              enable: true
+            });
+            hammer.on('pan', function (e) {
+              translate(e.deltaX, e.deltaY);
+            });
+            hammer.on('panend', function (e) {
+              updateLastPos();
+            });
+            hammer.on('pinch', function (e) {
+              // We only calculate the pinch center on the first pinch event as we want the center to
+              // stay consistent during the entire pinch
+              if (pinchCenter === null) {
+                pinchCenter = rawCenter(e);
+                var offsetX = pinchCenter.x*scale - (-x*scale + Math.min(viewportWidth, curWidth)/2);
+                var offsetY = pinchCenter.y*scale - (-y*scale + Math.min(viewportHeight, curHeight)/2);
+                pinchCenterOffset = { x: offsetX, y: offsetY };
+              }
+              // When the user pinch zooms, she/he expects the pinch center to remain in the same
+              // relative location of the screen. To achieve this, the raw zoom center is calculated by
+              // first storing the pinch center and the scaled offset to the current center of the
+              // image. The new scale is then used to calculate the zoom center. This has the effect of
+              // actually translating the zoom center on each pinch zoom event.
+              var newScale = restrictScale(scale*e.scale);
+              var zoomX = pinchCenter.x*newScale - pinchCenterOffset.x;
+              var zoomY = pinchCenter.y*newScale - pinchCenterOffset.y;
+              var zoomCenter = { x: zoomX/newScale, y: zoomY/newScale };
+              zoomAround(e.scale, zoomCenter.x, zoomCenter.y, true);
+            });
+            hammer.on('pinchend', function (e) {
+              updateLastScale();
+              updateLastPos();
+              pinchCenter = null;
+            });
+            hammer.on('doubletap', function (e) {
+              var c = rawCenter(e);
+              zoomAround(2, c.x, c.y);
+            });
+          };    
+    </script>
+ 
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>Apumanque</title>
+</head>
+
+<body>
+
+<!--wrap -->
+<div class="wrap winterior localmapa1 wmapa">
+
+    <!--header-->
+    <div class="header">
+        <!--top --> 
+        <div class="top container-fluid">
+            <div class="container">
+                <div class="row">
+                    <!--logo--> 
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png">
+                            </a>
+                        </div>        
+                    </div><!--logo-->
+
+                    <!--icono menu mobile--> 
+                    <div class="iconmenu abrir">
+						<p>Menú</p>
+						<span></span>
+						<span></span>
+						<span></span> 
+                    </div><!--icono menu mobile-->
+
+                    <!--icono menu mobile--> 
+                    <div class="iconmenu cerrar">
+						<p>Cerrar</p> 
+						<i class="">x</i> 
+                    </div><!--icono menu mobile-->  
+                    
+                    <div class="col-md-9">
+                        <!--iniciar sesion--> 
+                        <form>
+                            <!--boton-->  
+                            <div class="boton">       
+                                <button type="button" class="iniciar btn btn-default">Inicio sesión</button> 
+                                <button type="button" class="cerrar btn btn-default">
+                                	Cerrar 
+                                	<i class="fa fa-times-circle"></i>
+                                </button>
+                            </div><!--boton-->
+
+                            <!--registroinicio-->
+                            <div class="registroinicio">
+                            	<div class="volver visible-xs visible-sm">
+                            		<i class="fa fa-chevron-left"></i>
+                            		Volver
+                            	</div>
+								<div class="form-group">
+									<label for="rut">Ingresa tu RUT</label>
+									<input type="text" class="form-control" id="rut" placeholder="Ej. 12345678-9">
+								</div>
+								<div class="form-group">
+									<label for="correo">Ingresa tu correo electrónico</label>
+									<input type="text" class="form-control" id="correo" placeholder="Ej. micorreo@mail.com">
+								</div>
+								<button type="submit" class="enviar btn btn-default">REGISTRARME E INICIAR SESIÓN</button>
+                            </div><!--/registroinicio-->
+                        </form><!--iniciar sesion-->
+
+                        <!--menutop--> 
+                        <ul class="menutop">
+                            <li class="hvr-fade">
+                            	<a href="mapa.html">Mapa</a>
+                            </li>
+                            <li class="hvr-fade">
+                            	<a href="ayuda.html">Ayuda</a>
+                            </li>
+                            <li class="hvr-fade">
+                            	<a href="contacto.html">Contacto</a>
+                            </li>   
+                        </ul><!--/menutop-->
+                    </div>
+                </div>
+            </div>
+        </div><!--/top -->
+
+        <!--menuprincipalbox -->
+        <div class="menuprincipalbox container-fluid">
+            <div class="container">
+                <div class="row">
+                    <!--logofixed-->
+                    <div class="logofixed">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png">
+                            </a>
+                        </div> 
+                    </div><!--logofixed-->
+                    <div class="col-md-12">
+                        <!--menuprincipal -->
+                        <div class="menuprincipal">
+                            <ul>
+                                <li class="hvr-fade">
+                                	<a href="index.html">Inicio</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="locales.html"  class="activo">Locales</a>
+                                </li> 
+                                <li class="hvr-fade">
+                                	<a href="descuentos.html">Descuentos</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="destacados.html">Destacados</a>
+                                </li>
+                                <li class="hvr-fade">
+                                    <a href="servicios.html">Servicios</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="noticias.html">Noticias</a>
+                                </li>
+                            </ul>
+                        </div><!-- menuprincipal-->  
+                    </div>
+                </div>       
+            </div>
+        </div><!-- menuprincipalbox-->  
+    </div><!--header-->
+
+    <!--banner--> 
+    <div class="coreint">
+        <!-- item carrusel -->
+        <div>   
+            <!-- banner textos -->
+            <div class="core">
+                <img src="img/mujer-mapa.png" class="img-responsive hidden-xs desktop">
+                <img src="img/mujer-mapam.png" class="visible-xs">
+                <div class="container">
+                    <div class="textos pright">
+                        <h2>ENCUENTRA EL LOCAL QUE BUSCAS</h2>
+                        <p>Sólo háznos saber qué buscas y te indicaremos exactamente a dónde ir.</p>
+                    </div>
+                </div>
+            </div><!-- banner textos -->
+        </div><!-- item carrusel -->    
+    </div><!--banner--> 
+
+    <!-- cuerpo center-->
+	<div class="container cuerpo">
+		<!-- buscadorbox -->
+		<div class=" buscadorbox">
+            <div class="row">
+                <form>
+                    <div class="col-xs-12 col-sm-8 col-md-7">
+                        <input type="text" name="" class="text" placeholder="Ingresa algún producto, servicio o local.">
+                    </div>
+                    <div class="col-md-5 col-sm-4">
+                        <div class="botonbuscar hvr-glow">
+                            <input type="submit" value="FILTRAR" class="buscar">
+                            <i class="fa fa-filter"></i>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- buscadorbox -->
+
+		<!-- interior -->
+		<div class="container cinterior descuentos nplr mapas">
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="fichalocal">
+						<!-- logo -->
+						<div class="logo">
+							<img src="img/a3d.png">
+						</div><!-- logo -->
+                         
+            <div class="info">
+              <p class="normal">Local 441 </p><br>
+              <p class="normal">Tél: 222012390</p><br>
+              <p class="normal">Rubros:</p><br>
+              <p class="light">Hogar y decoración, Regalos</p><br>    
+            </div>
+					</div>
+          <hr>
+          <div id="mapasvg"  class="pinch-zoom-container pinch mapasvg pan">
+              <div class="instruccion">
+                  <img src="img/pinch.svg" class="parpadea">
+              </div>
+              <img id="pinch-zoom-image-id" class="pinch-zoom-image" src="mapas/piso1.svg" onload="onLoad()">
+          </div>
+				</div>		
+			</div>
+
+			<!-- resultadoS -->
+			<div class="container">
+
+			</div><!-- resultados -->			
+		</div><!-- interior -->
+	</div><!-- cuerpo center-->
+
+    <!--footer-->
+    <div class="footer"></div><!--footer-->
+
+</div><!--wrap --> 
+
+<!-- JS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/funciones.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="js/owl.carousel.js"></script>
+
+
+
+   
+
+</body>
+</html>

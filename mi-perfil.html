@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/> 
+    <!-- favicon -->
+    <link type="image/x-icon" rel="shortcut icon" href="favicon.ico" />   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" rel="stylesheet">
+    <!-- estilos -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>Apumanque</title>
+</head>
+
+<body>
+
+<!--wrap -->
+<div class="wrap winterior">
+
+    <!--header-->
+    <div class="header">
+        <!--top --> 
+        <div class="top container-fluid">
+            <div class="container">
+                <div class="row">
+                    <!--logo--> 
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png">
+                            </a>
+                        </div>        
+                    </div><!--logo-->
+
+                    <!--icono menu mobile--> 
+                    <div class="iconmenu abrir">
+						<p>Menú</p>
+						<span></span>
+						<span></span>
+						<span></span> 
+                    </div><!--icono menu mobile-->
+
+                    <!--icono menu mobile--> 
+                    <div class="iconmenu cerrar">
+						<p>Cerrar</p> 
+						<i class="">x</i> 
+                    </div><!--icono menu mobile-->  
+                    
+                    <div class="col-md-9">
+                        <!--iniciar sesion--> 
+                        <form>
+                            <!--boton-->  
+                            <div class="boton">       
+                                <button type="button" class="iniciar btn btn-default">Inicio sesión</button> 
+                                <button type="button" class="cerrar btn btn-default">
+                                	Cerrar 
+                                	<i class="fa fa-times-circle"></i>
+                                </button>
+                            </div><!--boton-->
+
+                            <!--registroinicio-->
+                            <div class="registroinicio">
+                            	<div class="volver visible-xs visible-sm">
+                            		<i class="fa fa-chevron-left"></i>
+                            		Volver
+                            	</div>
+								<div class="form-group">
+									<label for="rut">Ingresa tu RUT</label>
+									<input type="text" class="form-control" id="rut" placeholder="Ej. 12345678-9">
+								</div>
+								<div class="form-group">
+									<label for="correo">Ingresa tu correo electrónico</label>
+									<input type="text" class="form-control" id="correo" placeholder="Ej. micorreo@mail.com">
+								</div>
+								<button type="submit" class="enviar btn btn-default">REGISTRARME E INICIAR SESIÓN</button>
+                            </div><!--/registroinicio-->
+                        </form><!--iniciar sesion-->
+
+                        <!--menutop--> 
+                        <ul class="menutop">
+                            <li class="hvr-fade">
+                            	<a href="mapa.html">Mapa</a>
+                            </li>
+                            <li class="hvr-fade">
+                            	<a href="ayuda.html">Ayuda</a>
+                            </li>
+                            <li class="hvr-fade">
+                            	<a href="contacto.html">Contacto</a>
+                            </li>   
+                        </ul><!--/menutop-->
+                    </div>
+                </div>
+            </div>
+        </div><!--/top -->
+
+        <!--menuprincipalbox -->
+        <div class="menuprincipalbox container-fluid">
+            <div class="container">
+                <div class="row">
+                    <!--logofixed-->
+                    <div class="logofixed">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png">
+                            </a>
+                        </div> 
+                    </div><!--logofixed-->
+                    <div class="col-md-12">
+                        <!--menuprincipal -->
+                        <div class="menuprincipal">
+                            <ul>
+                                <li class="hvr-fade">
+                                	<a href="index.html">Inicio</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="locales.html">Locales</a>
+                                </li> 
+                                <li class="hvr-fade">
+                                	<a href="descuentos.html">Descuentos</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="destacados.html">Destacados</a>
+                                </li>
+                                <li class="hvr-fade">
+                                    <a href="servicios.html">Servicios</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="noticias.html">Noticias</a>
+                                </li>
+                            </ul>
+                        </div><!-- menuprincipal-->  
+                    </div>
+                </div>       
+            </div>
+        </div><!-- menuprincipalbox-->  
+    </div><!--header-->
+
+    <!-- cuerpo center-->
+	<div class="container cuerpo">
+		<div class="">
+			<div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                <h1 class="titulop">Mi perfil</h1>
+                <!-- boxchicocentrado -->
+                <div> 
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#datos" aria-controls="home" role="tab" data-toggle="tab">
+                                 Datos personales
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#cupones" aria-controls="profile" role="tab" data-toggle="tab">
+                                Mis cupones
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#boletas" aria-controls="messages" role="tab" data-toggle="tab">
+                                Mis Boletas
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#descuentos" aria-controls="messages" role="tab" data-toggle="tab">
+                                Mis descuentos
+                            </a>
+                        </li>
+                    </ul><!-- Nav tabs -->
+
+                    <!-- Tab paneles-->
+                    <div class="tab-content wmiperfil">
+                        <!--panel --> 
+                        <div role="tabpanel" class="tab-pane active" id="datos">
+                            <!--form -->
+                            <form action="" class="perfil">
+                                <!--datos -->
+                                <div class="datos">
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" placeholder="Nombre Ejemplo" class="form-control" id="nombre" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellidos">Apellidos</label>
+                                        <input type="text" placeholder="Apellidos Ejemplo" class="form-control" id="apellidos" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Correo electrónico</label>
+                                        <input type="email" placeholder="Correo Ejemplo" class="form-control" id="email" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="text" placeholder="98365896" class="form-control" id="telefono" disabled>
+                                    </div>  
+                                </div><!--datos -->
+                                <!--foto -->
+                                <div class="foto">
+                                    <div class="form-group">
+                                        <div class="boxfoto">
+                                            <img id='img-upload' src="img/coreayudam.jpg" />
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    Cambiar Foto<input type="file" id="imgInp" disabled>
+                                                </span>
+                                            </span>
+                                           <input type="text" class="form-control" readonly style="display: none;"> 
+                                        </div>
+                                    </div>
+                                </div><!--foto -->
+                                <div class="botones2">
+                                    <div class="cambiar" id="cambiar">
+                                        <span>Cambiar datos</span>
+                                        <i class="fa fa-pencil"></i>
+                                    </div>
+                                </div>
+                                <div class="botones">
+                                    <button type="reset">Cancelar</button>
+                                    <button type="submit">Guardar</button>
+                                </div>
+                            </form><!--form -->    
+                        </div><!--panel --> 
+                        <!--panel --> 
+                        <div role="tabpanel" class="tab-pane" id="cupones">
+                            <p>Felicidades, María José</p>
+                            <p class="eres">eres</p>
+                            <p class="cuidadano">Ciudadano Ilustre</p>
+                            <!--llaves --> 
+                            <div class="llaves">
+                                <img src="img/llave-amarilla.svg">
+                                <img src="img/llave.svg">
+                                <img src="img/llave.svg">
+                            </div><!--llaves -->
+
+                            <!--tienes --> 
+                            <div class="tienes">
+                                <p>Tienes hasta ahora:</p>
+                            </div><!--tienes -->
+
+                            <!--linea -->
+                            <div class="linea">
+                                <div class="cantidad">
+                                    <span>120</span>
+                                    <p>Cupones virtuales para campaña vigente</p>
+                                </div>
+                                <!--progreso --> 
+                                <div class="progreso">
+                                     <div class="chart" id="graph" data-percent="78">
+                                         <p>completado</p>
+                                     </div>
+                                </div><!--progreso -->
+                                <!--nivel -->
+                                <div class="nivel">
+                                    <p class="titulo">Nivel actual: Nivel 1</p>
+                                    <p class="normal">Recibes 1,2 cupones por cada $10.000 de compras</p>
+                                    <p class="italic">
+                                        Para subir de nivel, debes hacerlo desde la Apumanque App
+                                    <p>
+                                </div><!--nivel -->
+                            </div><!--linea -->
+                           <div class="aspectos">
+                                <a data-fancybox="gallery" href="javascript:;" data-toggle="modal" data-target=".modal.pdf">Ver Aspectos legales</a>
+                           </div>
+                        </div><!--panel -->
+                        <!--panel --> 
+                        <div role="tabpanel" class="tab-pane" id="boletas">
+                            <h2>Este es tu historial de boletas, donde puedes revisar todas tus boletas ingresadas.</h2>
+                            <!--boletas --> 
+                            <div class="boletas">
+                                <!--boleta --> 
+                                <div class="boleta">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/boleta.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del local que puede ser de hasta 2 líneas de texto dependiendo del largo</p> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Fecha de la compra</p>
+                                            <p class="info">11 marzo 2017</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                           <p class="titulo"> Últimos 4 dígitos</p>
+                                            <p class="info">1234</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Monto de la compra</p>
+                                            <p class="info">$12.000</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="ver">
+                                                <a href="javascript:;" data-toggle="modal" data-target=".modalboleta">VER BOLETA</a>
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta -->
+
+                                <!--boleta --> 
+                                <div class="boleta">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/boleta.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del local que puede ser de hasta 2 líneas de texto dependiendo del largo</p> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Fecha de la compra</p>
+                                            <p class="info">11 marzo 2017</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                           <p class="titulo"> Últimos 4 dígitos</p>
+                                            <p class="info">1234</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Monto de la compra</p>
+                                            <p class="info">$12.000</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="ver">
+                                                <a href="javascript:;" data-toggle="modal" data-target=".modalboleta">VER BOLETA</a>
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta -->
+
+                                <!--boleta --> 
+                                <div class="boleta">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/boleta.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del local que puede ser de hasta 2 líneas de texto dependiendo del largo</p> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Fecha de la compra</p>
+                                            <p class="info">11 marzo 2017</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                           <p class="titulo"> Últimos 4 dígitos</p>
+                                            <p class="info">1234</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Monto de la compra</p>
+                                            <p class="info">$12.000</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="ver">
+                                                <a href="javascript:;" data-toggle="modal" data-target=".modalboleta">VER BOLETA</a>
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta -->
+
+                                <!--boleta --> 
+                                <div class="boleta">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/boleta.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del local que puede ser de hasta 2 líneas de texto dependiendo del largo</p> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Fecha de la compra</p>
+                                            <p class="info">11 marzo 2017</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                           <p class="titulo"> Últimos 4 dígitos</p>
+                                            <p class="info">1234</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Monto de la compra</p>
+                                            <p class="info">$12.000</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="ver">
+                                                <a href="javascript:;" data-toggle="modal" data-target=".modalboleta">VER BOLETA</a>
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta -->
+
+                                <!--boleta --> 
+                                <div class="boleta">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/boleta.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del local que puede ser de hasta 2 líneas de texto dependiendo del largo</p> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Fecha de la compra</p>
+                                            <p class="info">11 marzo 2017</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                           <p class="titulo"> Últimos 4 dígitos</p>
+                                            <p class="info">1234</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="titulo">Monto de la compra</p>
+                                            <p class="info">$12.000</p>
+                                        </div><!--col -->
+                                        <!--col -->  
+                                        <div class="col">
+                                            <p class="ver">
+                                                <a href="javascript:;" data-toggle="modal" data-target=".modalboleta">VER BOLETA</a>
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta -->
+                            </div><!--boletas -->
+
+                            <!-- pagination -->
+                            <div class="bs-example" data-example-id="disabled-active-pagination">
+                                <nav aria-label="..."> 
+                                    <ul class="pagination"> 
+                                        <li class="disabled">
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">«</span>
+                                            </a>
+                                        </li> 
+                                        <li class="active">
+                                            <a href="#">1</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">2</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">3</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">4</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">5</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#" aria-label="Next">
+                                                <span aria-hidden="true">»</span>
+                                            </a>
+                                        </li> 
+                                    </ul> 
+                                </nav> 
+                            </div><!-- pagination -->    
+                        </div><!--panel--> 
+
+                        <!--panel--> 
+                        <div role="tabpanel" class="tab-pane" id="descuentos">
+                             <h2>Revisa acá todos los descuentos que has solicitado.</h2>
+                            <!--boletas --> 
+                            <div class="descuentos">
+                                <!--boleta --> 
+                                <div class="descuento">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/collar.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del descuento que puede ser de hasta 2 líneas de texto dependiendo del largo</p>
+                                            <!--sublinea --> 
+                                            <div class="sublinea">
+                                                <p class="local">Local</p>
+                                                <p>Nombre local más largo que exista</p>
+                                                <div class="verlocal">
+                                                    <a href="ficha-local.html">Ir al local</a>
+                                                </div>
+                                            </div><!--sublinea --> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div>
+                                            <p class="plazo">
+                                                Quedan 4 días para canjear
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta -->
+                                <!--boleta --> 
+                                <div class="descuento">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/collar.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del descuento que puede ser de hasta 2 líneas de texto dependiendo del largo</p>
+                                            <!--sublinea --> 
+                                            <div class="sublinea">
+                                                <p class="local">Local</p>
+                                                <p>Nombre local más largo que exista</p>
+                                                <div class="verlocal">
+                                                    <a href="ficha-local.html">Ir al local</a>
+                                                </div>
+                                            </div><!--sublinea --> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div>
+                                            <p class="plazo">
+                                                Quedan 4 días para canjear
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta --> 
+                                <!--boleta --> 
+                                <div class="descuento">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/collar.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del descuento que puede ser de hasta 2 líneas de texto dependiendo del largo</p>
+                                            <!--sublinea --> 
+                                            <div class="sublinea">
+                                                <p class="local">Local</p>
+                                                <p>Nombre local más largo que exista</p>
+                                                <div class="verlocal">
+                                                    <a href="ficha-local.html">Ir al local</a>
+                                                </div>
+                                            </div><!--sublinea --> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div>
+                                            <p class="plazo">
+                                                Quedan 4 días para canjear
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta --> 
+                                <!--boleta --> 
+                                <div class="descuento">
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--foto --> 
+                                        <div class="foto">
+                                            <img src="img/collar.png">
+                                        </div><!--foto --> 
+                                        <!--info --> 
+                                        <div class="nombre">
+                                            <p>Nombre del descuento que puede ser de hasta 2 líneas de texto dependiendo del largo</p>
+                                            <!--sublinea --> 
+                                            <div class="sublinea">
+                                                <p class="local">Local</p>
+                                                <p>Nombre local más largo que exista</p>
+                                                <div class="verlocal">
+                                                    <a href="ficha-local.html">Ir al local</a>
+                                                </div>
+                                            </div><!--sublinea --> 
+                                        </div><!--info -->
+                                    </div><!--fila -->
+                                    <hr>
+                                    <!--fila --> 
+                                    <div class="fila">
+                                        <!--col -->  
+                                        <div>
+                                            <p class="plazo">
+                                                Quedan 4 días para canjear
+                                            </p>
+                                        </div><!--col -->  
+                                    </div><!--fila -->
+                                </div><!--boleta -->  
+                            </div><!--boletas -->
+
+                            <!-- pagination -->
+                            <div class="bs-example" data-example-id="disabled-active-pagination">
+                                <nav aria-label="..."> 
+                                    <ul class="pagination"> 
+                                        <li class="disabled">
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">«</span>
+                                            </a>
+                                        </li> 
+                                        <li class="active">
+                                            <a href="#">1</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">2</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">3</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">4</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#">5</a>
+                                        </li> 
+                                        <li>
+                                            <a href="#" aria-label="Next">
+                                                <span aria-hidden="true">»</span>
+                                            </a>
+                                        </li> 
+                                    </ul> 
+                                </nav> 
+                            </div><!-- pagination -->    
+                        </div><!--panel --> 
+                    </div><!-- Tab paneles-->
+                </div><!-- boxchicocentrado -->
+			</div>	
+		</div>
+	</div><!-- cuerpo center-->
+
+    <!--footer-->
+    <div class="footer"></div><!--footer-->
+
+</div><!--wrap --> 
+<i id="subir" class="fa fa-chevron-circle-up subir"></i>
+
+<!-- modal pdf-->
+<div class="modal pdf fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-remove"></i>
+                </button>
+            </div>
+            <!-- contenido modal -->
+            <div class="modal-body">
+               <div id="pdf"></div>
+            </div><!-- contenido modal -->
+        </div>
+    </div>
+</div><!-- /modal pdf-->
+
+<!-- modal boleta-->
+<div class="modal modalboleta fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-remove"></i>
+                </button>
+            </div>
+            <!-- contenido modal -->
+            <div class="modal-body">
+               <img src="img/boletagrande.png" class="img-responsive">
+            </div><!-- contenido modal -->
+        </div>
+    </div>
+</div><!-- /modal boleta-->
+
+
+
+
+<!-- JS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/funciones.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="js/owl.carousel.js"></script>
+<script src="js/isotope.pkgd.js"></script>
+<script src="js/pdfobject.js"></script>
+<script>PDFObject.embed("pdf/test.pdf", "#pdf");</script>
+<script src="js/inicia-circle.js"></script>
+
+
+
+
+</body>
+</html>

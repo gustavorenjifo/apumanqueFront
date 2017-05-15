@@ -1,0 +1,271 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/> 
+    <!-- favicon -->
+    <link type="image/x-icon" rel="shortcut icon" href="favicon.ico" />   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" rel="stylesheet">
+    <!-- estilos -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>Apumanque</title>
+</head>
+
+<body>
+
+<!--wrap -->
+<div class="wrap">
+
+    <!--header-->
+    <div class="header">
+        <!--top --> 
+        <div class="top container-fluid">
+            <div class="container">
+                <div class="row">
+                    <!--logo--> 
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png">
+                            </a>
+                        </div>        
+                    </div><!--logo-->
+
+                    <!--icono menu mobile--> 
+                    <div class="iconmenu abrir">
+						<p>Menú</p>
+						<span></span>
+						<span></span>
+						<span></span> 
+                    </div><!--icono menu mobile-->
+
+                    <!--icono menu mobile--> 
+                    <div class="iconmenu cerrar">
+						<p>Cerrar</p> 
+						<i class="">x</i> 
+                    </div><!--icono menu mobile-->  
+                    
+                    <div class="col-md-9">
+                        <!--iniciar sesion--> 
+                        <form>
+                            <!--boton-->  
+                            <div class="boton">       
+                                <button type="button" class="iniciar btn btn-default">Inicio sesión</button> 
+                                <button type="button" class="cerrar btn btn-default">
+                                	Cerrar 
+                                	<i class="fa fa-times-circle"></i>
+                                </button>
+                            </div><!--boton-->
+
+                            <!--registroinicio-->
+                            <div class="registroinicio">
+                            	<div class="volver visible-xs visible-sm">
+                            		<i class="fa fa-chevron-left"></i>
+                            		Volver
+                            	</div>
+								<div class="form-group">
+									<label for="rut">Ingresa tu RUT</label>
+									<input type="text" class="form-control" id="rut" placeholder="Ej. 12345678-9">
+								</div>
+								<div class="form-group">
+									<label for="correo">Ingresa tu correo electrónico</label>
+									<input type="text" class="form-control" id="correo" placeholder="Ej. micorreo@mail.com">
+								</div>
+								<button type="submit" class="enviar btn btn-default">REGISTRARME E INICIAR SESIÓN</button>
+                            </div><!--/registroinicio-->
+                        </form><!--iniciar sesion-->
+
+                        <!--menutop--> 
+                        <ul class="menutop">
+                            <li class="hvr-fade">
+                            	<a href="mapa.html">Mapa</a></a>
+                            </li>
+                            <li class="hvr-fade">
+                            	<a href="ayuda.html">Ayuda</a>
+                            </li>
+                            <li class="hvr-fade">
+                            	<a href="contacto.html">Contacto</a>
+                            </li>   
+                        </ul><!--/menutop-->
+                    </div>
+                </div>
+            </div>
+        </div><!--/top -->
+
+        <!--menuprincipalbox -->
+        <div class="menuprincipalbox container-fluid">
+            <div class="container">
+                <div class="row">
+                    <!--logofixed-->
+                    <div class="logofixed">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="img/logo.png">
+                            </a>
+                        </div> 
+                    </div><!--logofixed-->
+                    <div class="col-md-12">
+                        <!--menuprincipal -->
+                        <div class="menuprincipal">
+                            <ul>
+                                <li class="hvr-fade">
+                                	<a href="index.html">Inicio</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="locales.html">Locales</a>
+                                </li> 
+                                <li class="hvr-fade">
+                                	<a href="descuentos.html" >Descuentos</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="destacados.html">Destacados</a>
+                                </li>
+                                <li class="hvr-fade">
+                                    <a href="servicios.html" class="activo">Servicios</a>
+                                </li>
+                                <li class="hvr-fade">
+                                	<a href="noticias.html">Noticias</a>
+                                </li>
+                            </ul>
+                        </div><!-- menuprincipal-->  
+                    </div>
+                </div>       
+            </div>
+        </div><!-- menuprincipalbox-->  
+    </div><!--header-->
+
+    <!--banner--> 
+	<div class="coreint">
+		<!-- item carrusel -->
+		<div> 	
+			<!-- banner textos -->
+			<div class="core">
+				<img src="img/core-servicios.jpg" class="img-responsive hidden-xs desktop">
+				<img src="img/coreserviciosm.jpg" class="visible-xs">
+				<div class="container">
+					<div class="textos pright">
+						<h2>NUESTROS<br> SERVICIOS</h2>
+						<p>En Apumanque contamos con exclusivos servicios para nuestros clientes.</p>
+					</div>
+				</div>
+			</div><!-- banner textos -->
+		</div><!-- item carrusel -->	
+	</div><!--banner--> 
+
+    <!-- cuerpo center-->
+	<div class="container cuerpo">
+
+		<!-- interior -->
+		<div class="container descuentos interior bottomradius nplr">
+            <!-- serviciobox-->
+			<div class="row servicios">
+                <!-- servicio -->
+				<div class="servicio col-xs-12 col-sm-6 col-md-6">
+				    <div class="img">
+                        <img src="img/servicio1.png">            
+                    </div>
+                    <div class="boxtextos">
+                        <h2 class="titulo">SERVICIO DE GUARDAPEQUES</h2>
+                        <div class="textos">
+                             <p>En Apumanque contamos con una guardería infantil de larga trayectoria, a cargo de profesionales de la educación parvularia.<br><br></p>
+                            <p>Niños de 3 a 6 años de edad.</p>
+                            <p> Servicio sin Costo.</p>
+                        </div>
+                        <span>*EXCLUSIVO PARA CLIENTES</span>
+                        <div class="ver">
+                            <a href="ficha-producto.html">CÓMO LLEGAR</a>
+                        </div>
+                    </div>
+				</div><!-- servicio -->
+                <!-- servicio -->
+                <div class="servicio col-xs-12 col-sm-6 col-md-6">
+                    <div class="img">
+                        <img src="img/servicio2.png">            
+                    </div>
+                    <div class="boxtextos">
+                        <h2 class="titulo">COMIDAS Y CAFÉ</h2>
+                        <div class="textos">
+                            <p>En Apumanque podrás disfrutar de una variedad de restoranes y cafés. Comparte con tus amigos en cualquiera de los 13 restoranes de Apumanque o en cualquiera de los café dispuestos en los distintos niveles del centro comercial.</p>
+                        </div>
+                        <span>*EXCLUSIVO PARA CLIENTES</span>
+                        <div class="ver">
+                            <a href="ficha-producto.html">CONOCER LOS LOCALES</a>
+                        </div>
+                    </div>
+                </div><!-- servicio -->
+                <!-- servicio -->
+                <div class="servicio col-xs-12 col-sm-6 col-md-6">
+                    <div class="img">
+                        <img src="img/servicio3.png">            
+                    </div>
+                    <div class="boxtextos">
+                        <h2 class="titulo">BICICLETERO</h2>
+                        <div class="textos">
+                            <p>Cada estacionamiento es individual y cerrado. Adicionalmente, cuenta con la presencia permanente de personal de seguridad.<br><br></p>
+                            <p>Servicio sin costo.</p><br>
+                            <p> Horario:</p>
+                            <p>
+                            Lunes a Sábado: De 10:00 a 21:00 hrs.<br>
+                            Domingo y festivos: De 11:00 a 21:00 hrs.
+                            </p>
+                        </div>
+                        <span>*EXCLUSIVO PARA CLIENTES</span>
+                        <div class="ver">
+                            <a href="ficha-producto.html">CÓMO LLEGAR</a>
+                        </div>
+                    </div>
+                </div><!-- servicio -->
+                <!-- servicio -->
+                <div class="servicio col-xs-12 col-sm-6 col-md-6">
+                    <div class="img">
+                        <img src="img/servicio4.png">            
+                    </div>
+                    <div class="boxtextos">
+                        <h2 class="titulo">COCHES Y SILLAS DE RUEDA</h2>
+                        <div class="textos">
+                            <p>Si tienes niños menores que aún no pueden quedarse solos en nuestra guardería infantil, cuenta con nuestro servicio de coches.  <br><br></p>
+                            <p>Coches sólo para niños de hasta 3 años de edad. También disponemos de sillas de rueda para adultos. </p><br>
+                            <p>Estos servicios no tienen costo.</p>
+                        </div>
+                        <div class="ver">
+                            <a href="ficha-producto.html">CÓMO LLEGAR</a>
+                        </div>
+                    </div>
+                </div><!-- servicio -->
+			</div><!-- serviciobox-->
+		</div><!-- interior -->
+	</div><!-- cuerpo center-->
+
+    <!--footer-->
+    <div class="footer">
+    	
+    </div>
+    <!--footer-->
+
+</div><!--wrap --> 
+<i id="subir" class="fa fa-chevron-circle-up subir"></i>
+
+<!-- JS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/funciones.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="js/owl.carousel.js"></script>
+<script src="js/isotope.pkgd.js"></script>
+
+
+</body>
+</html>
